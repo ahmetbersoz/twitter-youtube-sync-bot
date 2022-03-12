@@ -34,25 +34,25 @@ if (latest_twitter_video_title != latest_youtube_video_title):
     video_filename = latest_youtube_video_id + '.mp4'
     video_path = './' + video_filename
 
-    # try: 
-    # download te video
-    yt = YouTube(youtube_link).streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first().download(output_path='.', filename=video_filename)
+    try: 
+        # download te video
+        yt = YouTube(youtube_link).streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first().download(output_path='.', filename=video_filename)
 
-    # upload the video to twitter
-    media =  api.media_upload(video_path, media_category='tweet_video')
-    
-    # send tweet
-    api.update_status(status=latest_youtube_video_title, media_ids=[media.media_id])
+        # upload the video to twitter
+        media =  api.media_upload(video_path, media_category='tweet_video')
+        
+        # send tweet
+        api.update_status(status=latest_youtube_video_title, media_ids=[media.media_id])
 
-    # delete the video
-    os.remove(video_path)   
+        # delete the video
+        os.remove(video_path)   
 
-    print('New video uploaded')     
-    # except: 
-    #     # delete the video
-    #     os.remove(video_path)   
+        print('New video uploaded')     
+    except: 
+        # delete the video
+        os.remove(video_path)   
 
-    #     print("Error occured")
+        print("Error occured")
 else:
     print('No new video')
 
