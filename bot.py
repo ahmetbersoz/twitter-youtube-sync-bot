@@ -5,7 +5,7 @@ import json
 import os
 
 # read credentials
-f = open('credentials.json')
+f = open(os.getcwd() + '/credentials.json')
 creds = json.load(f)
 
 # connect to twitter api
