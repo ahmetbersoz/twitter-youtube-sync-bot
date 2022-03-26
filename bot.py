@@ -32,7 +32,7 @@ for video in youtube_videos:
 if (latest_twitter_video_title != latest_youtube_video_title):
     youtube_link = "https://www.youtube.com/watch?v=" + latest_youtube_video_id
     video_filename = latest_youtube_video_id + '.mp4'
-    video_path = './' + video_filename
+    video_path = os.getcwd() + '/' + video_filename
 
     try: 
         # download te video
