@@ -19,7 +19,7 @@ latest_tweet = api.user_timeline(count=1)[0].text
 # get rid of the 'https://t.co/'
 latest_twitter_video_title = latest_tweet.split(' https://t.co/')[0]
 
-# get latest channel video information
+# get latest channel video informationls
 youtube_videos = scrapetube.get_channel(channel_url=creds['youtube']['channel_url'], limit=1)
 latest_youtube_video_title = ''
 latest_youtube_video_id = ''
@@ -33,10 +33,11 @@ if (latest_twitter_video_title != latest_youtube_video_title):
     youtube_link = "https://www.youtube.com/watch?v=" + latest_youtube_video_id
     video_filename = latest_youtube_video_id + '.mp4'
     video_path = os.getcwd() + '/' + video_filename
+    output_path = os.getcwd()
 
     try: 
         # download te video
-        yt = YouTube(youtube_link).streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first().download(output_path='.', filename=video_filename)
+        yt = YouTube(youtube_link).streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first().download(output_path=output_path, filename=video_filename)
 
         # upload the video to twitter
         media =  api.media_upload(video_path, media_category='tweet_video')
