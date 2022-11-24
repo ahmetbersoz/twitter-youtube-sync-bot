@@ -1,0 +1,3 @@
+[submodule "scrapetube"]
+	path = scrapetube
+	url = https://github.com/ahmetbersoz/scrapetube
