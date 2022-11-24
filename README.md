@@ -36,6 +36,11 @@ Create credentials.json with this structure:
 }
 ```
 
+Add submodules
+
+```
+git submodule update --init --recursive
+```
 
 ## Usage
 
@@ -44,3 +49,5 @@ Run the scripts directly or create a cronjob which regularly runs the script.
 ```
 python bot.py
 ```
+
+
