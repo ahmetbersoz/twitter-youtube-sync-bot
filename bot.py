@@ -1,5 +1,5 @@
 import tweepy
-import scrapetube
+from scrapetube import scrapetube
 from pytube import YouTube 
 import json
 import os
@@ -20,12 +20,12 @@ latest_tweet = api.user_timeline(count=1)[0].text
 latest_twitter_video_title = latest_tweet.split(' https://t.co/')[0]
 
 # get latest channel video informationls
-youtube_videos = scrapetube.get_channel(channel_url=creds['youtube']['channel_url'], limit=1)
+youtube_videos = scrapetube.get_channel(channel_url=creds['youtube']['channel_url'], limit=1, content_type='shorts')
 latest_youtube_video_title = ''
 latest_youtube_video_id = ''
 
 for video in youtube_videos:
-    latest_youtube_video_title = video['title']['runs'][0]['text']
+    latest_youtube_video_title = video['headline']['simpleText']
     latest_youtube_video_id = video['videoId']
 
 # detect is there a new video
